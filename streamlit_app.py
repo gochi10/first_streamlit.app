@@ -24,6 +24,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 
+
 #create the repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice):
     fruityvice_response = requests.get("https://fruitvice.com/api/fruit/" + this_fruit_choice)
@@ -39,9 +40,11 @@ try:
     else:
           back_from_function = get_fruityvice_data(fruit_choice)
           streamlit.dataframe(back_from_function)
+except URLError as e:
+    streamlit.error()
           
 # don't run anything past here while we troubleshoot
-streamlit.stop()
+# streamlit.stop()
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
