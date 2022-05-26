@@ -27,7 +27,7 @@ streamlit.dataframe(fruits_to_show)
 
 #create the repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice):
-    fruityvice_response = requests.get("https://fruitvice.com/api/fruit/" + this_fruit_choice)
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
 
@@ -44,7 +44,7 @@ except URLError as e:
     streamlit.error()
          
 
-streamlit.header("The fruit load list contains")
+streamlit.header("The fruit load list contains:")
 #Snowflake-related functions
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
